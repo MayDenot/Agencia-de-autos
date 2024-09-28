@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-09-2024 a las 23:16:12
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 28-09-2024 a las 00:01:55
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,16 +53,19 @@ CREATE TABLE `vehiculos` (
   `ID_Vehiculo` int(11) NOT NULL,
   `Patente` varchar(45) NOT NULL,
   `Modelo` varchar(45) NOT NULL,
-  `Marca` varchar(45) NOT NULL
+  `Marca` varchar(45) NOT NULL,
+  `Año_de_Modelo` year(4) NOT NULL,
+  `Color` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `vehiculos`
 --
 
-INSERT INTO `vehiculos` (`ID_Vehiculo`, `Patente`, `Modelo`, `Marca`) VALUES
-(1, 'WET784', 'Corsa', 'Chevrolet'),
-(2, 'AD652FG', 'Cronos', 'Fiat');
+INSERT INTO `vehiculos` (`ID_Vehiculo`, `Patente`, `Modelo`, `Marca`, `Año_de_Modelo`, `Color`) VALUES
+(1, 'WET784', 'Corsa', 'Chevrolet', '2011', 'Blanco'),
+(2, 'AD652FG', 'Cronos', 'Fiat', '2022', 'Gris'),
+(5, 'AC-345-FP', 'Corolla', 'Toyota', '2015', 'Negro');
 
 --
 -- Índices para tablas volcadas
@@ -96,7 +99,7 @@ ALTER TABLE `alquileres`
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `ID_Vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

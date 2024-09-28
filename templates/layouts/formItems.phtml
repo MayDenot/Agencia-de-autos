@@ -1,0 +1,35 @@
+<?php require_once "./templates/layouts/header.phtml"; ?>
+
+<div class="d-flex gap-5">
+  <form action="nuevoAlquiler" method="POST" class="container bg-light p-5">
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label" for="selectVehiculo">Vehiculo</label>
+      <div class="col-sm-10">
+        <select class="form-select" id="selectVehiculo" name="vehiculo_alquilar" required>
+          <option selected>Elige...</option>
+          <?php foreach ($categories as $category) : ?>
+            <option value="<?=$category->ID_Vehiculo?>"><?= $category->Marca ?></option>
+          <?php endforeach ?>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputFechaEntrega" class="col-sm-2 col-form-label">Fecha de entrega</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="inputFechaEntrega" name="fecha_entrega" required>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputFechaVencimiento" class="col-sm-2 col-form-label">Fecha de vencimiento</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="inputFechaVencimiento" name="fecha_vencimiento" required>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputPrecio" class="col-sm-2 col-form-label">Precio</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="inputPrecio" name="precio" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>

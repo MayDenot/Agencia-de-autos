@@ -26,14 +26,16 @@
           `ID_Vehiculo` int(11) NOT NULL,
           `Patente` varchar(45) NOT NULL,
           `Modelo` varchar(45) NOT NULL,
-          `Marca` varchar(45) NOT NULL);
+          `Marca` varchar(45) NOT NULL),
+          `Año_de_Modelo` year(4) NOT NULL,
+          `Color` varchar(40) NOT NULL;
           END;
         $this->db->query($sql);
       }
     }
 
     public function getAllItems() {
-      $query = $this->db->prepare("SELECT * FROM vehiculos");
+      $query = $this->db->prepare("SELECT * FROM alquileres");
       $query->execute();
 
       $items = $query->fetchAll(PDO::FETCH_OBJ);
@@ -42,7 +44,7 @@
     }
 
     public function getItemById($id) {
-      $query = $this->db->prepare("SELECT * FROM vehiculos WHERE ID_Vehiculo = ?");
+      $query = $this->db->prepare("SELECT * FROM alquileres WHERE ID = ?");
       $query->execute([$id]);
 
       $item = $query->fetch(PDO::FETCH_OBJ);
@@ -50,13 +52,22 @@
       return $item;
     }
 
-    public function insertItem($patente, $modelo, $marca) {
-      $query = $this->db->prepare("INSERT INTO vehiculos(ID_Vehiculo, Patente, Modelo, Marca) VALUES(?,?,?,?)");
-      $query->execute([null, $patente, $modelo, $marca]);
+    public function insertItem($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio) {
+      $query = $this->db->prepare("INSERT INTO alquileres(ID, ID_Vehiculo, Fecha_de_entrega, Fecha_de_vencimiento, Precio) VALUES(?,?,?,?,?)");
+      $query->execute([null, $vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio]);
     }
 
     public function deleteItemById($id) {
-      $query = $this->db->prepare('DELETE FROM vehiculos WHERE ID_Vehiculo = ?');
+      $query = $this->db->prepare('DELETE FROM alquileres WHERE ID = ?');
       $query->execute([$id]);
+    }
+
+    public function getAllCategories() {
+      $query = $this->db->prepare("SELECT * FROM vehiculos");
+      $query->execute();
+
+      $categories = $query->fetchAll(PDO::FETCH_OBJ);
+        
+      return $categories;
     }
   }

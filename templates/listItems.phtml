@@ -1,12 +1,23 @@
-<?php require_once "./templates/layouts/header.phtml"; ?>
+<?php require_once "./templates/layouts/formItems.phtml"; ?>
 
-<h2>Lista de vehículos</h2>
-<ul class='list-group'>
-  <?php foreach($items as $item) : ?>
-    <li class='list-group-item d-flex justify-content-between'><?=$item->Marca?>
-      <a href="vehiculo/<?=$item->ID_Vehiculo?>">Detalles</a>
-    </li>
-  <?php endforeach ?>
-</ul>
+<section class="container">
+  <h2>Lista de alquileres</h2>
+  <ul class='list-group'>
+    <?php foreach ($items as $item) : ?>
+      <li class="list-group-item d-flex justify-content-between align-items-center p-4">
+        <div class="ms-2 me-auto">
+            <!-- <small> $category->Marca ?></small> -->
+            <div class="fw-bold">
+              <h6>Fecha de entrega: <?= $item->Fecha_de_entrega ?> </h6>
+              <h6>Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></h6>
+            </div>
+            <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
+          </div>
+          <a href="alquiler/<?= $item->ID ?>">Detalles</a>
+        </li>
+        <?php endforeach ?>
+  </ul>
+</section>
+</div>
 
 <?php require_once "./templates/layouts/footer.phtml"; ?>
