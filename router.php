@@ -1,5 +1,6 @@
 <?php
 require_once "./app/controllers/ItemController.php";
+require_once "./app/controllers/Vehiculos.Controller.php";
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -16,6 +17,7 @@ $params = explode('/', $action);
 // alquiler -> ItemController->showItem(id)
 // nuevoAlquiler -> ItemController->addItem()
 // eliminarAlquiler -> ItemController->deleteItem(id)
+// vehiculos -> VehiculosController->showVehiculos();
 
 switch ($params[0]) {
   case 'listar':
@@ -40,6 +42,9 @@ switch ($params[0]) {
     $controller = new ItemController();
     $controller->login();
     break;
+  case 'vehiculos':
+    $controller = new VehiculosController();
+    $controller->showVehiculos();
   default:
     echo ('404 Page not found');
     break;
