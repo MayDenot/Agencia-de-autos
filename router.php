@@ -17,6 +17,7 @@ $params = explode('/', $action);
 // alquiler -> ItemController->showItem(id)
 // nuevoAlquiler -> ItemController->addItem()
 // eliminarAlquiler -> ItemController->deleteItem(id)
+// editarAlquiler -> ItemController->updateItem(id)
 // vehiculos -> VehiculosController->showVehiculos();
 
 switch ($params[0]) {
@@ -37,6 +38,10 @@ switch ($params[0]) {
   case 'eliminarAlquiler':
     $controller = new ItemController();
     $controller->deleteItem($params[1]);
+    break;
+  case 'editarAlquiler':
+    $controller = new ItemController();
+    $controller->updateItem($params[1]);
     break;
   case 'login':
     $controller = new ItemController();

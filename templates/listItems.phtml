@@ -12,8 +12,10 @@
               <h6>Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></h6>
             </div>
             <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
+            <a class="mx-3" href="alquiler/<?= $item->ID ?>">Detalles</a>
           </div>
-          <a href="alquiler/<?= $item->ID ?>">Detalles</a>
+          <a class="btn btn-outline-success mx-3" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
+          <a class="btn btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
         </li>
         <?php endforeach ?>
   </ul>

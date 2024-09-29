@@ -8,7 +8,7 @@
         <select class="form-select" id="selectVehiculo" name="vehiculo_alquilar" required>
           <option selected>Elige...</option>
           <?php foreach ($categories as $category) : ?>
-            <option value="<?=$category->ID_Vehiculo?>"><?= $category->Marca ?></option>
+            <option value="<?= $category->ID_Vehiculo ?>"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></option>
           <?php endforeach ?>
         </select>
       </div>

@@ -35,7 +35,7 @@
     }
 
     public function getAllItems() {
-      $query = $this->db->prepare("SELECT * FROM alquileres");
+      $query = $this->db->prepare('SELECT * FROM alquileres');
       $query->execute();
 
       $items = $query->fetchAll(PDO::FETCH_OBJ);
@@ -44,7 +44,7 @@
     }
 
     public function getItemById($id) {
-      $query = $this->db->prepare("SELECT * FROM alquileres WHERE ID = ?");
+      $query = $this->db->prepare('SELECT * FROM alquileres WHERE ID = ?');
       $query->execute([$id]);
 
       $item = $query->fetch(PDO::FETCH_OBJ);
@@ -53,7 +53,7 @@
     }
 
     public function insertItem($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio) {
-      $query = $this->db->prepare("INSERT INTO alquileres(ID, ID_Vehiculo, Fecha_de_entrega, Fecha_de_vencimiento, Precio) VALUES(?,?,?,?,?)");
+      $query = $this->db->prepare('INSERT INTO alquileres(ID, ID_Vehiculo, Fecha_de_entrega, Fecha_de_vencimiento, Precio) VALUES(?,?,?,?,?)');
       $query->execute([null, $vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio]);
     }
 
@@ -62,12 +62,8 @@
       $query->execute([$id]);
     }
 
-    public function getAllCategories() {
-      $query = $this->db->prepare("SELECT * FROM vehiculos");
-      $query->execute();
-
-      $categories = $query->fetchAll(PDO::FETCH_OBJ);
-        
-      return $categories;
+    public function updateItemById($idVehiculo, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id) {
+      $query = $this->db->prepare('UPDATE alquileres SET ID_Vehiculo = ?, Fecha_de_entrega = ?, Fecha_de_vencimiento = ?, Precio = ? WHERE ID = ?');
+      $query->execute([$idVehiculo, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id]);
     }
   }

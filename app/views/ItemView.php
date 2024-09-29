@@ -4,7 +4,6 @@
   class ItemView {
     public function showItems($items, $categories) {
       $countItems = count($items); 
-      $countCategories = count($categories); 
       require_once "./templates/listItems.phtml";
     }
 
@@ -18,5 +17,9 @@
 
     public function showError($error) {
       require_once "./templates/error.phtml";
+    }
+
+    public function editItem($item) {
+      
     }
   }
