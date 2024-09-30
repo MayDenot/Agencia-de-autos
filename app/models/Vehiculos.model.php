@@ -54,13 +54,15 @@
         }
 
         public function deleteVehiculo($id) {
-            $query = $this->db->prepare('DELETE * FROM vehiculos WHERE ID = ?');
+            $query = $this->db->prepare('DELETE FROM vehiculos WHERE ID_Vehiculo = ?');
             $query->execute([$id]);
         }
 
         public function insertVehiculo($patente,$modelo,$marca,$anio,$color) {
-            $query = $this->db->prepare('INSERT INTO vehiculos(Patente, Modelo, Marca,Año_de_Modelo, Color) VALUES (?,?,?,?');
+            $query = $this->db->prepare('INSERT INTO vehiculos(Patente, Modelo, Marca, Año_de_Modelo, Color) VALUES (?,?,?,?,?)');
             $query->execute([$patente,$modelo,$marca,$anio,$color]);
+
+            return $this->db->lastInsertId();
         }
 
         public function editVehiculo($id,$patente,$modelo,$marca,$anio,$color) {

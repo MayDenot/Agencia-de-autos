@@ -22,55 +22,53 @@
         }
 
         public function addVehiculo() {
+            
+            if (!isset($_POST['patente']) || empty($_POST['patente'])) {
+                return $this->view->showError("Falta Patente del Vehiculo");
+            }
+            
+            if (!isset($_POST['modelo']) || empty($_POST['modelo'])) {
+                return $this->view->showError("Falta Modelo del Vehiculo");
+            }
+            
+            if (!isset($_POST['marca']) || empty($_POST['marca'])) {
+                return $this->view->showError("Falta Marca del Vehiculo");
+            }
+            
+            if (!isset($_POST['anio']) || empty($_POST['anio'])) {
+                return $this->view->showError("Falta Año del Vehiculo");
+            }
+            
+            if (!isset($_POST['color']) || empty($_POST['color'])) {
+                return $this->view->showError("Falta Color del Vehiculo");
+            }
+            
             $patente = $_POST['patente'];
             $modelo = $_POST['modelo'];
             $marca = $_POST['marca'];
             $anio = $_POST['anio'];
             $color = $_POST['color'];
-
-            if (!isset($_POST['patente']) || empty($_POST['patente'])) {
-                return $this->view->showError("Falta Patente del Vehiculo");
-            }
-
-            if (!isset($_POST['modelo']) || empty($_POST['modelo'])) {
-                return $this->view->showError("Falta Modelo del Vehiculo");
-            }
-
-            if (!isset($_POST['marca']) || empty($_POST['marca'])) {
-                return $this->view->showError("Falta Marca del Vehiculo");
-            }
-
-            if (!isset($_POST['anio']) || empty($_POST['anio'])) {
-                return $this->view->showError("Falta Año del Vehiculo");
-            }
-
-            if (!isset($_POST['color']) || empty($_POST['color'])) {
-                return $this->view->showError("Falta Color del Vehiculo");
-            }
-
+            
             $id = $this->model->insertVehiculo($patente,$modelo,$marca,$anio,$color);
-
-            if ($id)
-                header('Location: ' . BASE_URL);
-            else
+            
+            if ($id) {
+                header('Location: ' . BASE_URL . '/vehiculos');
+            }
+            else {
                 $this->view->showError("Error al cargar vehiculo");
+            }
         }
 
         public function updateVehiculo() {
-            $patente = $_POST['patente'];
-            $modelo = $_POST['modelo'];
-            $marca = $_POST['marca'];
-            $anio = $_POST['anio'];
-            $color = $_POST['color'];
-
+            
             if (!isset($_POST['patente']) || empty($_POST['patente'])) {
                 return $this->view->showError("Falta Patente del Vehiculo");
             }
-
+            
             if (!isset($_POST['modelo']) || empty($_POST['modelo'])) {
                 return $this->view->showError("Falta Modelo del Vehiculo");
             }
-
+            
             if (!isset($_POST['marca']) || empty($_POST['marca'])) {
                 return $this->view->showError("Falta Marca del Vehiculo");
             }
@@ -78,22 +76,28 @@
             if (!isset($_POST['anio']) || empty($_POST['anio'])) {
                 return $this->view->showError("Falta Año del Vehiculo");
             }
-
+            
             if (!isset($_POST['color']) || empty($_POST['color'])) {
                 return $this->view->showError("Falta Color del Vehiculo");
             }
-
+            
+            $patente = $_POST['patente'];
+            $modelo = $_POST['modelo'];
+            $marca = $_POST['marca'];
+            $anio = $_POST['anio'];
+            $color = $_POST['color'];
+            
             $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color);
-
+            
             if ($id)
-                header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL . '/vehiculos');
             else
                 $this->view->showError("Error al actualizar el vehiculo");
         }
 
         public function removeVehiculo($id) {
             $this->model->deleteVehiculo($id);
-            header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL . '/vehiculos');
         }
     }
 

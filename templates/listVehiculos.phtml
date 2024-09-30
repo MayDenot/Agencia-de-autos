@@ -1,4 +1,4 @@
-<?php require_once "./templates/layouts/formItems.phtml"; ?>
+<?php require_once "./templates/layouts/formVehiculos.phtml"; ?>
 
 <section class="container">
   <h2>Lista De Vehiculos</h2>
@@ -13,7 +13,8 @@
               <h6>Marca: <?= $vehiculo->Marca ?></h6>
             </div>
           </div>
-          <!-- <a href="alquiler/<?= $item->ID ?>">Detalles</a> -->
+          <a class="btn btn-outline-success mx-3" href="editarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Editar</a>
+          <a class="btn btn-outline-danger" href="eliminarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Eliminar</a>
         </li>
         <?php endforeach ?>
   </ul>
