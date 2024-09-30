@@ -8,4 +8,8 @@
 
             require './templates/listVehiculos.phtml';
         }
+
+        public function showError($error) {
+            require_once "./templates/error.phtml";
+        }
     }
