@@ -12,8 +12,6 @@
       $this->model = new ItemModel();
       $this->modelVehiculo = new VehiculosModel();
       $this->view = new ItemView();
-
-      //Seguridad
     }
 
     public function showItems() {
@@ -24,7 +22,8 @@
 
     public function showItem($id) {
       $item = $this->model->getItemById($id);
-      $this->view->showItem($item);
+      $category = $this->modelVehiculo->getVehiculoById($id);
+      $this->view->showItem($item, $category);
     }
 
     public function addItem() {
@@ -45,8 +44,9 @@
       $fechaDeEntrega = $_POST['fecha_entrega'];
       $fechaDeVencimiento = $_POST['fecha_vencimiento'];
       $precio = $_POST['precio'];
+      $usuario = 'usuario';
 
-      $id = $this->model->insertItem($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio);
+      $id = $this->model->insertItem($vehiculoAlquilar, $usuario, $fechaDeEntrega, $fechaDeVencimiento, $precio);
 
       header("Location: " . BASE_URL); 
     }

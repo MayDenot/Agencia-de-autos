@@ -4,10 +4,11 @@
   class ItemView {
     public function showItems($items, $categories) {
       $countItems = count($items); 
+      $countCategories = count($categories);
       require_once "./templates/listItems.phtml";
     }
 
-    public function showItem($item) {
+    public function showItem($item, $category) {
       require_once "./templates/itemDetails.phtml";
     }
 

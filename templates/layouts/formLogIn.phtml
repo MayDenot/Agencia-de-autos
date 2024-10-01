@@ -1,17 +1,28 @@
 <?php require_once "./templates/layouts/header.phtml"; ?>
 
+<?php if ($error): ?>
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
+      <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>
+      <?php $error ?>
+    </div>
+  </div>
+<?php endif ?>
+
 <div>
-  <form class="container bg-light w-50 p-5">
+  <form action="login" method="POST" class="container bg-light w-50 p-5">
     <div class="row mb-3">
-      <label for="inputUsername3" class="col-sm-2 col-form-label">Username</label>
+      <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputUsername3" required>
+        <input type="text" class="form-control" id="inputUsername" name="usuario" required>
       </div>
     </div>
     <div class="row mb-3">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" required>
+        <input type="password" class="form-control" id="inputPassword" name="contraseña" required>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Log in</button>

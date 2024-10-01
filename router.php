@@ -1,4 +1,7 @@
 <?php
+require_once "./libs/response.php";
+require_once "./app/middlewares/SessionAuthMiddleware.php";
+require_once "./app/controllers/AuthController.php";
 require_once "./app/controllers/ItemController.php";
 require_once "./app/controllers/Vehiculos.Controller.php";
 
@@ -22,42 +25,55 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
   case 'listar':
-    $controller = new ItemController();
+    sessionAuthMiddleware($res);
+    $controller = new ItemController($res);
     $controller->showItems();
     break;
   case 'alquiler':
+    sessionAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
-    $controller = new ItemController();
+    $controller = new ItemController($res);
     $controller->showItem($id);
     break;
   case 'nuevoAlquiler':
-    $controller = new ItemController();
+    sessionAuthMiddleware($res);
+    $controller = new ItemController($res);
     $controller->addItem();
     break;
   case 'eliminarAlquiler':
-    $controller = new ItemController();
+    sessionAuthMiddleware($res);
+    $controller = new ItemController($res);
     $controller->deleteItem($params[1]);
     break;
   case 'editarAlquiler':
-    $controller = new ItemController();
+    sessionAuthMiddleware($res);
+    $controller = new ItemController($res);
     $controller->updateItem($params[1]);
+    break;
+  case 'showLogin':
+    $controller = new AuthController();
+    $controller->showLogin();
     break;
   case 'login':
     $controller = new ItemController();
     $controller->login();
     break;
   case 'vehiculos':
-    $controller = new VehiculosController();
+    sessionAuthMiddleware($res);
+    $controller = new VehiculosController($res);
     $controller->showVehiculos();
   case 'nuevoVehiculo':
-    $controller = new VehiculosController();
+    sessionAuthMiddleware($res);
+    $controller = new VehiculosController($res);
     $controller->addVehiculo();
   case 'eliminarVehiculo':
-    $controller = new VehiculosController();
+    sessionAuthMiddleware($res);
+    $controller = new VehiculosController($res);
     $controller->removeVehiculo($params[1]);
   case 'editarVehiculo':
-    $controller = new VehiculosController();
+    sessionAuthMiddleware($res);
+    $controller = new VehiculosController($res);
     $controller->updateVehiculo($params[1]);
   default:
     echo ('404 Page not found');
