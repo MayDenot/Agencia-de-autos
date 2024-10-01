@@ -68,13 +68,20 @@ switch ($params[0]) {
     $controller = new VehiculosController($res);
     $controller->addVehiculo();
   case 'eliminarVehiculo':
-    sessionAuthMiddleware($res);
-    $controller = new VehiculosController($res);
-    $controller->removeVehiculo($params[1]);
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
+    $controller = new VehiculosController();
+    $controller->removeVehiculo($id);
   case 'editarVehiculo':
-    sessionAuthMiddleware($res);
-    $controller = new VehiculosController($res);
-    $controller->updateVehiculo($params[1]);
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
+    $controller = new VehiculosController();
+    $controller->updateVehiculo($id);
+  case 'vehiculo':
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
+    $controller = new VehiculosController();
+    $controller->showVehiculo($id);
   default:
     echo ('404 Page not found');
     break;
