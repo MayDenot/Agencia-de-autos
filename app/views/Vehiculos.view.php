@@ -9,6 +9,10 @@
             require './templates/listVehiculos.phtml';
         }
 
+        public function showVehiculo($vehiculo) {
+            require './templates/detallesVehiculo.phtml';
+        }
+
         public function showError($error) {
             require_once "./templates/error.phtml";
         }

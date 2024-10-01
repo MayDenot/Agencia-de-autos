@@ -42,14 +42,19 @@
             if (!isset($_POST['color']) || empty($_POST['color'])) {
                 return $this->view->showError("Falta Color del Vehiculo");
             }
+
+            if (!isset($_POST['imagen']) || empty($_POST['imagen'])) {
+                return $this->view->showError("Falta Imagen del Vehiculo");
+            }
             
             $patente = $_POST['patente'];
             $modelo = $_POST['modelo'];
             $marca = $_POST['marca'];
             $anio = $_POST['anio'];
             $color = $_POST['color'];
+            $imagen = $_POST['imagen'];
             
-            $id = $this->model->insertVehiculo($patente,$modelo,$marca,$anio,$color);
+            $id = $this->model->insertVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
             
             if ($id) {
                 header('Location: ' . BASE_URL . '/vehiculos');
@@ -80,14 +85,19 @@
             if (!isset($_POST['color']) || empty($_POST['color'])) {
                 return $this->view->showError("Falta Color del Vehiculo");
             }
+
+            if (!isset($_POST['imagen']) || empty($_POST['imagen'])) {
+                return $this->view->showError("Falta Imagen del Vehiculo");
+            }
             
             $patente = $_POST['patente'];
             $modelo = $_POST['modelo'];
             $marca = $_POST['marca'];
             $anio = $_POST['anio'];
             $color = $_POST['color'];
+            $imagen = $_POST['imagen'];
             
-            $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color);
+            $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
             
             if ($id)
             header('Location: ' . BASE_URL . '/vehiculos');

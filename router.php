@@ -54,11 +54,20 @@ switch ($params[0]) {
     $controller = new VehiculosController();
     $controller->addVehiculo();
   case 'eliminarVehiculo':
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();
-    $controller->removeVehiculo($params[1]);
+    $controller->removeVehiculo($id);
   case 'editarVehiculo':
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();
-    $controller->updateVehiculo($params[1]);
+    $controller->updateVehiculo($id);
+  case 'vehiculo':
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
+    $controller = new VehiculosController();
+    $controller->showVehiculo($id);
   default:
     echo ('404 Page not found');
     break;
