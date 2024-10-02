@@ -6,20 +6,20 @@
       <use xlink:href="#exclamation-triangle-fill" />
     </svg>
     <div>
-      <?php $error ?>
+      <?= $error ?>
     </div>
   </div>
 <?php endif ?>
 
 <div>
   <form action="login" method="POST" class="container bg-light w-50 p-5">
-    <div class="row mb-3">
+    <div class="form-group row mb-3">
       <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="inputUsername" name="usuario" required>
       </div>
     </div>
-    <div class="row mb-3">
+    <div class="form-group row mb-3">
       <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
         <input type="password" class="form-control" id="inputPassword" name="contraseña" required>

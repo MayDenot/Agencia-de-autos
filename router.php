@@ -7,8 +7,9 @@ require_once "./app/controllers/Vehiculos.Controller.php";
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
-$action = 'listar';
+$res = new Response();
 
+$action = 'listar';
 if (!empty($_GET['action'])) {
   $action = $_GET['action'];
 }
@@ -56,7 +57,7 @@ switch ($params[0]) {
     $controller->showLogin();
     break;
   case 'login':
-    $controller = new ItemController();
+    $controller = new AuthController();
     $controller->login();
     break;
   case 'vehiculos':
@@ -68,16 +69,19 @@ switch ($params[0]) {
     $controller = new VehiculosController($res);
     $controller->addVehiculo();
   case 'eliminarVehiculo':
+    sessionAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();
     $controller->removeVehiculo($id);
   case 'editarVehiculo':
+    sessionAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();
     $controller->updateVehiculo($id);
   case 'vehiculo':
+    sessionAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();

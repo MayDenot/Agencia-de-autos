@@ -7,11 +7,13 @@
     private $model;
     private $modelVehiculo;
     private $view;
+    private $res;
 
-    public function __construct() {
+    public function __construct($res) {
+      $this->res = $res;
       $this->model = new ItemModel();
       $this->modelVehiculo = new VehiculosModel();
-      $this->view = new ItemView();
+      $this->view = new ItemView($res->user);
     }
 
     public function showItems() {
@@ -44,9 +46,9 @@
       $fechaDeEntrega = $_POST['fecha_entrega'];
       $fechaDeVencimiento = $_POST['fecha_vencimiento'];
       $precio = $_POST['precio'];
-      $usuario = 'usuario';
+      $idUsuario = $this->res->user->ID_Usuario;
 
-      $id = $this->model->insertItem($vehiculoAlquilar, $usuario, $fechaDeEntrega, $fechaDeVencimiento, $precio);
+      $id = $this->model->insertItem($vehiculoAlquilar, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio);
 
       header("Location: " . BASE_URL); 
     }
@@ -75,14 +77,11 @@
       $fechaDeEntrega = $_POST['fecha_entrega'];
       $fechaDeVencimiento = $_POST['fecha_vencimiento'];
       $precio = $_POST['precio'];
+      $idUsuario = $this->res->user->ID_Usuario;
 
-      $item = $this->model->updateItemById($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
+      $item = $this->model->updateItemById($vehiculoAlquilar, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
       $this->view->editItem($item);
 
       header("Location: " . BASE_URL);
-    }
-
-    public function login() {
-      $this->view->showFormLogIn();
     }
   }

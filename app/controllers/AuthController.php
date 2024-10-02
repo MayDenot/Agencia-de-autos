@@ -29,10 +29,8 @@
       $userFromDB = $this->model->getUserByUsername($usuario);
 
       if ($userFromDB && password_verify($contraseña, $userFromDB->Contraseña)) {
-        session_start();
-        $_SESSION['ID_Usuario'] = $userFromDB->ID_Usuario;
-        $_SESSION['usuario'] = $userFromDB->Usuario;
-        $_SESSION['LAST_ACTIVITY'] = time();
+        $_SESSION['ID_USER'] = $userFromDB->ID_Usuario;
+        $_SESSION['USER_NAME'] = $userFromDB->Usuario;
 
         header("Location: " . BASE_URL); 
       } else {

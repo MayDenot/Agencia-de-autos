@@ -9,9 +9,9 @@
       $this->db = new PDO('mysql:host='. MYSQL_HOST .';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
     }
 
-    public function getUserByUsername($user) {
+    public function getUserByUsername($username) {
       $query = $this->db->prepare('SELECT * FROM usuarios WHERE Usuario = ?');
-      $query->execute([$user]);
+      $query->execute([$username]);
 
       $user = $query->fetch(PDO::FETCH_OBJ);
         

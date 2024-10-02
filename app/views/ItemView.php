@@ -2,6 +2,12 @@
   require_once "./app/controllers/ItemController.php";
 
   class ItemView {
+    private $user = null;
+
+    public function __construct($user) {
+      $this->user = $user;
+    }
+
     public function showItems($items, $categories) {
       $countItems = count($items); 
       $countCategories = count($categories);
