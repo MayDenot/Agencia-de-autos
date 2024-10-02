@@ -1,4 +1,8 @@
-<?php require_once "./templates/layouts/formItems.phtml"; ?>
+<?php if ($editar): ?> 
+  <?php require_once "./templates/layouts/formEditItems.phtml"; ?>
+<?php else : ?>
+  <?php require_once "./templates/layouts/formItems.phtml"; ?>
+<?php endif ?>
 
 <section class="container">
   <h2>Lista de alquileres</h2>

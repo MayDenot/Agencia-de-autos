@@ -8,18 +8,20 @@
     private $modelVehiculo;
     private $view;
     private $res;
+    private $items;
+    private $categories;
 
     public function __construct($res) {
       $this->res = $res;
       $this->model = new ItemModel();
       $this->modelVehiculo = new VehiculosModel();
       $this->view = new ItemView($res->user);
+      $this->items = $this->model->getAllItems();
+      $this->categories = $this->modelVehiculo->getVehiculos();
     }
 
     public function showItems() {
-      $items = $this->model->getAllItems();
-      $categories = $this->modelVehiculo->getVehiculos();
-      $this->view->showItems($items, $categories);
+      $this->view->showItems($this->items, $this->categories);
     }
 
     public function showItem($id) {
@@ -27,7 +29,7 @@
       $category = $this->modelVehiculo->getVehiculoById($id);
       $this->view->showItem($item, $category);
     }
-
+  
     public function addItem() {
       if (!isset($_POST['vehiculo_alquilar']) || empty($_POST['vehiculo_alquilar'])) {
         return $this->view->showError("Falta seleccionar una vehículo");
@@ -60,6 +62,15 @@
     }
 
     public function updateItem($id) {
+      $item = $this->model->getItemById($id);// Obtengo el item a modificar
+
+      if (!$item) {// Verifico si existe
+        return $this->view->showError("No existe el alquiler con el id = $id");
+      }
+      // Si existe, muestro el view para ingresar los nuevos valores
+      $this->view->editItem($this->items, $item, $this->categories);
+
+      // Obtengo los nuevos valores
       if (!isset($_POST['vehiculo_alquilar']) || empty($_POST['vehiculo_alquilar'])) {
         return $this->view->showError("Falta seleccionar una vehículo");
       }
@@ -70,7 +81,7 @@
         return $this->view->showError("Falta seleccionar una fecha de vencimiento");
       }
       if (!isset($_POST['precio']) || empty($_POST['precio'])) {
-        return $this->view->showError("Falta seleccionar una precio");
+        return $this->view->showError("Falta completar el precio");
       }
 
       $vehiculoAlquilar = $_POST['vehiculo_alquilar'];
@@ -79,8 +90,7 @@
       $precio = $_POST['precio'];
       $idUsuario = $this->res->user->ID_Usuario;
 
-      $item = $this->model->updateItemById($vehiculoAlquilar, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
-      $this->view->editItem($item);
+      $this->model->updateItemById($vehiculoAlquilar, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
 
       header("Location: " . BASE_URL);
     }

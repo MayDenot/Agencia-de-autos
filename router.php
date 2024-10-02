@@ -1,6 +1,7 @@
 <?php
 require_once "./libs/response.php";
 require_once "./app/middlewares/SessionAuthMiddleware.php";
+require_once "./app/middlewares/VerifyAuthMiddleware.php";
 require_once "./app/controllers/AuthController.php";
 require_once "./app/controllers/ItemController.php";
 require_once "./app/controllers/Vehiculos.Controller.php";
@@ -15,15 +16,6 @@ if (!empty($_GET['action'])) {
 }
 
 $params = explode('/', $action);
-
-// tabla de ruteo
-// listar -> ItemController->showItems()
-// alquiler -> ItemController->showItem(id)
-// nuevoAlquiler -> ItemController->addItem()
-// eliminarAlquiler -> ItemController->deleteItem(id)
-// editarAlquiler -> ItemController->updateItem(id)
-// vehiculos -> VehiculosController->showVehiculos();
-
 switch ($params[0]) {
   case 'listar':
     sessionAuthMiddleware($res);
@@ -39,16 +31,19 @@ switch ($params[0]) {
     break;
   case 'nuevoAlquiler':
     sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
     $controller = new ItemController($res);
     $controller->addItem();
     break;
   case 'eliminarAlquiler':
     sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
     $controller = new ItemController($res);
     $controller->deleteItem($params[1]);
     break;
   case 'editarAlquiler':
     sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
     $controller = new ItemController($res);
     $controller->updateItem($params[1]);
     break;
@@ -66,16 +61,19 @@ switch ($params[0]) {
     $controller->showVehiculos();
   case 'nuevoVehiculo':
     sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
     $controller = new VehiculosController($res);
     $controller->addVehiculo();
   case 'eliminarVehiculo':
     sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();
     $controller->removeVehiculo($id);
   case 'editarVehiculo':
     sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController();

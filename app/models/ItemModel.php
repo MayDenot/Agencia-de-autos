@@ -20,7 +20,7 @@
 
       return $item;
     }
-
+  
     public function insertItem($idVehiculo, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio) {
       $query = $this->db->prepare('INSERT INTO alquileres(ID, ID_Vehiculo, ID_Usuario, Fecha_de_entrega, Fecha_de_vencimiento, Precio) VALUES(?,?,?,?,?,?)');
       $query->execute([null, $idVehiculo, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio]);

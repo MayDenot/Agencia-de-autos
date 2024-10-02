@@ -29,13 +29,12 @@
             </li>
           </ul>
           <?php if ($this->user): ?>
-            <span class="navbar-text mx-3 text-primary fw-bold"><?= $this->user->Usuario ?></span>
+            <span class="navbar-text mx-3 text-primary fw-bold"><?= htmlspecialchars($this->user->Usuario) ?></span>
           <?php endif; ?>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
-          <a class="btn btn-primary ms-3" href="login" role="button">Log In</a>
+          <a class="btn btn-primary btn-sm ms-3" href="login" role="button">Log In</a>
+          <?php if ($this->user): ?>
+            <a class="btn btn-secondary btn-sm ms-3" href="logout" role="button">Log out</a>
+          <?php endif; ?>
         </div>
       </div>
     </nav>

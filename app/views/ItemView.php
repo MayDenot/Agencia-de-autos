@@ -9,6 +9,7 @@
     }
 
     public function showItems($items, $categories) {
+      $editar = false;
       $countItems = count($items); 
       $countCategories = count($categories);
       require_once "./templates/listItems.phtml";
@@ -17,7 +18,7 @@
     public function showItem($item, $category) {
       require_once "./templates/itemDetails.phtml";
     }
-
+  
     public function showFormLogIn() {
       require_once "./templates/layouts/formLogIn.phtml";
     }
@@ -26,7 +27,8 @@
       require_once "./templates/error.phtml";
     }
 
-    public function editItem($item) {
-      
+    public function editItem($items, $item, $categories) {
+      $editar = true;
+      require_once "./templates/listItems.phtml";
     }
   }
