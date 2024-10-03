@@ -37,8 +37,14 @@ class Model {
         (5, 'AC-345-FP', 'Corolla', 'Toyota', '2015', 'Negro');
 
         --
-        -- Índices para tablas volcadas
+        -- Table structure for table `usuarios`
         --
+
+        CREATE TABLE `usuarios` (
+            `ID_Usuario` int(11) NOT NULL,
+            `Usuario` varchar(250) NOT NULL,
+            `Contraseña` char(60) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
         --
         -- Indices de la tabla `alquileres`
@@ -57,6 +63,12 @@ class Model {
         --
         -- AUTO_INCREMENT de las tablas volcadas
         --
+        --
+        -- Indexes for table `usuarios`
+        --
+        ALTER TABLE `usuarios`
+        ADD PRIMARY KEY (`ID_Usuario`),
+        ADD UNIQUE KEY `Usuario` (`Usuario`);
 
         --
         -- AUTO_INCREMENT de la tabla `alquileres`

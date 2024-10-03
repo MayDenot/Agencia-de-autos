@@ -100,14 +100,14 @@
             $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
             
             if ($id)
-            header('Location: ' . BASE_URL . '/vehiculos');
+            header('Location: ' . BASE_URL . 'vehiculos');
             else
                 $this->view->showError("Error al actualizar el vehiculo");
         }
 
         public function removeVehiculo($id) {
             $this->model->deleteVehiculo($id);
-            header('Location: ' . BASE_URL . '/vehiculos');
+            header('Location: ' . BASE_URL . 'vehiculos');
         }
     }
 
