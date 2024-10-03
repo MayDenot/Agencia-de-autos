@@ -11,7 +11,6 @@
     public function showItems($items, $categories) {
       $editar = false;
       $countCat = 0;
-      var_dump($categories['ID_Vehiculo']->ID_Vehiculo);
       require_once "./templates/listItems.phtml";
     }
 
