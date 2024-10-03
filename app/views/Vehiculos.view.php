@@ -2,6 +2,11 @@
     require_once './app/controllers/Vehiculos.Controller.php';
 
     class VehiculosView {
+        private $user = null;
+
+        public function __construct($user) {
+            $this->user = $user;
+        }
 
         public function showVehiculos($vehiculos) {
             $count = count($vehiculos);

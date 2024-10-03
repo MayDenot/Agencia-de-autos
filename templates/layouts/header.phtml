@@ -31,7 +31,9 @@
           <?php if ($this->user): ?>
             <span class="navbar-text mx-3 text-primary fw-bold"><?= htmlspecialchars($this->user->Usuario) ?></span>
           <?php endif; ?>
+          <?php if (!$this->user): ?>
           <a class="btn btn-primary btn-sm ms-3" href="login" role="button">Log In</a>
+          <?php endif; ?>
           <?php if ($this->user): ?>
             <a class="btn btn-secondary btn-sm ms-3" href="logout" role="button">Log out</a>
           <?php endif; ?>

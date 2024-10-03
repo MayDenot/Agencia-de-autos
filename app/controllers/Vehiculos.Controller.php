@@ -6,9 +6,9 @@
         private $model;
         private $view;
 
-        public function __construct() {
+        public function __construct($res) {
             $this->model = new VehiculosModel();
-            $this->view = new VehiculosView();
+            $this->view = new VehiculosView($res->user);
         }
 
         public function showVehiculos() {

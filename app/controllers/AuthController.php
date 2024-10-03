@@ -29,6 +29,7 @@
       $userFromDB = $this->model->getUserByUsername($usuario);
 
       if ($userFromDB && password_verify($contraseña, $userFromDB->Contraseña)) {
+        session_start();
         $_SESSION['ID_USER'] = $userFromDB->ID_Usuario;
         $_SESSION['USER_NAME'] = $userFromDB->Usuario;
 
@@ -41,6 +42,6 @@
     public function logout() {
       session_start();
       session_destroy();
-      header('Location' . BASE_URL);
+      header('Location: ' . BASE_URL);
     }
   }
