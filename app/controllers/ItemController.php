@@ -9,7 +9,7 @@
     private $view;
     private $res;
     private $items;
-    private $categories;
+    protected $categories;
 
     public function __construct($res) {
       $this->res = $res;

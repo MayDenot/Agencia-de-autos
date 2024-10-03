@@ -10,7 +10,9 @@
     <?php foreach ($items as $item) : ?>
       <li class="list-group-item d-flex justify-content-between align-items-center p-4">
         <div class="ms-2 me-auto">
-          <!-- <small></small> -->
+          <!-- < if ($categories['ID_Vehiculo']->ID_Vehiculo == $item->ID_Vehiculo): ?>
+            <small>< $categories['ID_Vehiculo']->ID_Vehiculo->Marca ?></small>
+          < endif; ?> -->
           <div class="fw-bold">
             <h6>Fecha de entrega: <?= $item->Fecha_de_entrega ?> </h6>
             <h6>Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></h6>

@@ -10,8 +10,8 @@
 
     public function showItems($items, $categories) {
       $editar = false;
-      $countItems = count($items); 
-      $countCategories = count($categories);
+      $countCat = 0;
+      var_dump($categories['ID_Vehiculo']->ID_Vehiculo);
       require_once "./templates/listItems.phtml";
     }
 

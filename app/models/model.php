@@ -39,6 +39,17 @@ class Model {
         --
         -- Table structure for table `usuarios`
         --
+        --
+        -- Estructura de tabla para la tabla `usuarios`
+        --
+
+        CREATE TABLE `usuarios` (
+        `ID_Usuario` int(11) NOT NULL,
+        `Usuario` varchar(250) NOT NULL,
+        `Contraseña` char(60) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+        
+        -- --------------------------------------------------------
 
         CREATE TABLE `usuarios` (
             `ID_Usuario` int(11) NOT NULL,
