@@ -1,7 +1,7 @@
 # Agencia de autos
 
 ## DER
-![diagrama-tpe-parte1](https://github.com/user-attachments/assets/baf70e96-a625-4f8b-8c97-a1479cff3c6f)
+![diagrama-tpe-parte1](https://github.com/user-attachments/assets/ab55e2a3-322b-42f0-8595-49e5081364c8)
 
 ## Integrantes:
 - Ferrante, Tomas Abel (44048410)
