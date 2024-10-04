@@ -26,8 +26,7 @@
 
     public function showItem($id) {
       $item = $this->model->getItemById($id);
-      $category = $this->modelVehiculo->getVehiculoById($id);
-      $this->view->showItem($item, $category);
+      $this->view->showItem($item, $this->categories);
     }
   
     public function addItem() {

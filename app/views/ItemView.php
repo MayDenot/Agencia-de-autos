@@ -10,11 +10,10 @@
 
     public function showItems($items, $categories) {
       $editar = false;
-      $countCat = 0;
       require_once "./templates/listItems.phtml";
     }
 
-    public function showItem($item, $category) {
+    public function showItem($item, $categories) {
       require_once "./templates/itemDetails.phtml";
     }
   

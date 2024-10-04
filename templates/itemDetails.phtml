@@ -1,13 +1,17 @@
 <?php require_once "./templates/layouts/header.phtml"; ?>
 
-<div class="d-flex position-relative bg-light w-50 p-4">
-  <img src="<?= $category->Imagen ?>" class="flex-shrink-0 me-3" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
-  <div class="w-auto">
-    <h5 class="mt-0"><?= $category->Marca ?></h5>
-    <p class="fw-semibold text-secondary">Fecha de entrega: <?= $item->Fecha_de_entrega ?></p>
-    <p class="fw-semibold text-secondary">Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></p>
-    <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
-    <a href="<?= BASE_URL ?>" class="text-end p-3">Volver</a>
-  </div>
-</div>
-<?php require_once "./templates/layouts/footer.phtml"; ?>
+<?php foreach ($categories as $category) : ?>
+  <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
+    <div class="d-flex position-relative bg-light w-50 p-4">
+      <img src="<?= $category->Imagen ?>" class="w-50 flex-shrink-0 me-3" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
+      <div class="w-auto">
+        <h5 class="mt-0"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></h5>
+        <p class="fw-semibold text-secondary">Fecha de entrega: <?= $item->Fecha_de_entrega ?></p>
+        <p class="fw-semibold text-secondary">Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></p>
+        <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
+        <a href="<?= BASE_URL ?>" class="text-end p-3">Volver</a>
+      </div>
+    </div>
+    <?php require_once "./templates/layouts/footer.phtml"; ?>
+  <?php endif; ?>
+<?php endforeach ?>

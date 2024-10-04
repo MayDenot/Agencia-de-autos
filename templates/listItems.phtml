@@ -1,4 +1,4 @@
-<?php if ($editar): ?> 
+<?php if ($editar): ?>
   <?php require_once "./templates/layouts/formEditItems.phtml"; ?>
 <?php else : ?>
   <?php require_once "./templates/layouts/formItems.phtml"; ?>
@@ -9,19 +9,18 @@
   <ul class='list-group'>
     <?php foreach ($items as $item) : ?>
       <li class="list-group-item d-flex justify-content-between align-items-center p-4">
-        <div class="ms-2 me-auto">
-          <!-- < if ($categories['ID_Vehiculo']->ID_Vehiculo == $item->ID_Vehiculo): ?>
-            <small>< $categories['ID_Vehiculo']->ID_Vehiculo->Marca ?></small>
-          < endif; ?> -->
-          <div class="fw-bold">
-            <h6>Fecha de entrega: <?= $item->Fecha_de_entrega ?> </h6>
-            <h6>Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></h6>
-          </div>
+        <?php foreach ($categories as $category) : ?>
+          <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
+            <img src="<?= $category->Imagen ?>" class="w-25 flex-shrink-0 me-3" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
+            <div class="ms-2 me-auto">
+              <p class="fw-bold text-secondary"><?= $category->Marca ?></p>
+            <?php endif; ?>
+          <?php endforeach ?>
           <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
-          <a class="mx-3" href="alquiler/<?= $item->ID ?>">Detalles</a>
-        </div>
-        <a class="btn btn-outline-success mx-3" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
-        <a class="btn btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
+            </div>
+            <a class="btn btn-outline-success mx-3" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
+            <a class="btn btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
+            <a class="mx-3" href="alquiler/<?= $item->ID ?>">Detalles</a>
       </li>
     <?php endforeach ?>
   </ul>
