@@ -59,6 +59,12 @@ switch ($params[0]) {
     sessionAuthMiddleware($res);
     $controller = new VehiculosController($res);
     $controller->showVehiculos();
+  case 'vehiculo':
+    sessionAuthMiddleware($res);
+    $id = null;
+    if (isset($params[1])) $id = $params[1];
+    $controller = new VehiculosController($res);
+    $controller->showVehiculo($id);
   case 'nuevoVehiculo':
     sessionAuthMiddleware($res);
     verifyAuthMiddleware($res);
@@ -78,17 +84,12 @@ switch ($params[0]) {
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController($res);
     $controller->updateVehiculo($id);
-  case 'vehiculo':
-    sessionAuthMiddleware($res);
-    $id = null;
-    if (isset($params[1])) $id = $params[1];
-    $controller = new VehiculosController($res);
-    $controller->showVehiculo($id);
   case 'logout':
     $controller = new AuthController();
     $controller->logout();
     break;
   default:
-    echo ('404 Page not found');
+    $controller = new AuthController();
+    $controller->showError();
     break;
 }

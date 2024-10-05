@@ -4,18 +4,27 @@
   <h2>Lista De Vehiculos</h2>
   <ul class='list-group'>
     <?php foreach ($vehiculos as $vehiculo) : ?>
-      <li class="list-group-item d-flex justify-content-between align-items-center p-4">
-        <div class="ms-2 me-auto">
-          <!-- <small> $category->Marca ?></small> -->
+      <li class="row list-group-item d-flex justify-content-between align-items-center py-3 px-2">
+        <div class="col-7">
           <div class="fw-bold">
             <h6>Modelo: <?= $vehiculo->Modelo ?> </h6>
             <h6>Patente: <?= $vehiculo->Patente ?></h6>
             <h6>Marca: <?= $vehiculo->Marca ?></h6>
-            <a class="mx-3" href="vehiculo/<?= $vehiculo->ID_Vehiculo ?>">Detalles</a>
           </div>
         </div>
-        <a class="btn btn-outline-success mx-3" href="editarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Editar</a>
-        <a class="btn btn-outline-danger" href="eliminarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Eliminar</a>
+        <div class="col-5 d-flex flex-row justify-content-end">
+          <div class="mx-2">
+            <a class="btn btn-sm btn-outline-success" href="editarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Editar</a>
+          </div>
+          <div>
+            <a class="btn btn-sm btn-outline-danger" href="eliminarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Eliminar</a>
+          </div>
+        </div>
+        <div>
+          <div class="text-end">
+            <a class="btn btn-link btn-sm" href="vehiculo/<?= $vehiculo->ID_Vehiculo ?>">Detalles</a>
+          </div>
+        </div>
       </li>
     <?php endforeach; ?>
   </ul>

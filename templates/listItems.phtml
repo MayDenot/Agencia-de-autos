@@ -8,19 +8,35 @@
   <h2>Lista de alquileres</h2>
   <ul class='list-group'>
     <?php foreach ($items as $item) : ?>
-      <li class="list-group-item d-flex justify-content-between align-items-center p-4">
-        <?php foreach ($categories as $category) : ?>
-          <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
-            <img src="<?= $category->Imagen ?>" class="w-25 flex-shrink-0 me-3" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
-            <div class="ms-2 me-auto">
+      <li class="row list-group-item d-flex justify-content-between align-items-center py-3 px-2">
+        <div class="col-4">
+          <?php foreach ($categories as $category) : ?>
+            <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
+              <img src="<?= $category->Imagen ?>" class="w-100 me-3 rounded-1" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
+        </div>
+        <div class="col-8">
+          <div class="d-flex flex-row justify-content-between">
+            <div>
               <p class="fw-bold text-secondary"><?= $category->Marca ?></p>
             <?php endif; ?>
           <?php endforeach ?>
           <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
             </div>
-            <a class="btn btn-outline-success mx-3" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
-            <a class="btn btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
-            <a class="mx-3" href="alquiler/<?= $item->ID ?>">Detalles</a>
+            <div class="d-flex flex-row align-items-center">
+              <div class="mx-2">
+                <a class="btn btn-sm btn-outline-success" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
+              </div>
+              <div>
+                <a class="btn btn-sm btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-end">
+              <a class="btn btn-link btn-sm" href="alquiler/<?= $item->ID ?>">Detalles</a>
+            </div>
+          </div>
+        </div>
       </li>
     <?php endforeach ?>
   </ul>

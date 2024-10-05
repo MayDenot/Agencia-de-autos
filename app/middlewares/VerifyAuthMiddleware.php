@@ -3,7 +3,9 @@
     if ($res->user) {
       return;
     } else {
-      header('Location: ' . BASE_URL . 'showLogin');
+      echo "<script>window.location=".BASE_URL."showLogin</script>";
+      //header('Location: ' . BASE_URL . 'showLogin');
       die();
     }
   }
+?>

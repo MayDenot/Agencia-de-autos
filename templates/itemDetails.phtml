@@ -2,14 +2,18 @@
 
 <?php foreach ($categories as $category) : ?>
   <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
-    <div class="d-flex position-relative bg-light w-50 p-4">
-      <img src="<?= $category->Imagen ?>" class="w-50 flex-shrink-0 me-3" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
-      <div class="w-auto">
-        <h5 class="mt-0"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></h5>
-        <p class="fw-semibold text-secondary">Fecha de entrega: <?= $item->Fecha_de_entrega ?></p>
-        <p class="fw-semibold text-secondary">Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></p>
-        <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
-        <a href="<?= BASE_URL ?>" class="text-end p-3">Volver</a>
+    <div class="d-flex flex-column align-items-center flex-lg-row bg-light py-3 rounded-1">
+    <div class="d-lg-flex flex-lg-row px-4 align-items-lg-center">
+      <div class="p-3">
+        <img src="<?= $category->Imagen ?>" class="w-100 me-3 img-fluid rounded-1" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
+      </div>
+        <div class="w-auto px-3">
+          <h5 class="mt-0"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></h5>
+          <p class="fw-semibold text-secondary">Fecha de entrega: <?= $item->Fecha_de_entrega ?></p>
+          <p class="fw-semibold text-secondary">Fecha de vencimiento: <?= $item->Fecha_de_vencimiento ?></p>
+          <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
+          <a href="<?= BASE_URL ?>" class="btn btn-link p-3">Volver</a>
+        </div>
       </div>
     </div>
     <?php require_once "./templates/layouts/footer.phtml"; ?>

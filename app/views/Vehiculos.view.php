@@ -10,8 +10,7 @@
 
         public function showVehiculos($vehiculos) {
             $count = count($vehiculos);
-            
-            require_once './templates/listVehiculos.phtml';
+            require_once "./templates/listVehiculos.phtml";
         }
 
         public function showVehiculo($vehiculo) {

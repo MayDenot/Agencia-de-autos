@@ -44,4 +44,8 @@
       session_destroy();
       header('Location: ' . BASE_URL);
     }
+
+    public function showError() {
+      $this->view->showErrorNotFound();
+    }
   }
