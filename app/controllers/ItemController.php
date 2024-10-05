@@ -61,11 +61,13 @@
     }
 
     public function updateItem($id) {
+      ob_start();
       $item = $this->model->getItemById($id);// Obtengo el item a modificar
 
       if (!$item) {// Verifico si existe
         return $this->view->showError("No existe el alquiler con el id = $id");
       }
+      
       // Si existe, muestro el view para ingresar los nuevos valores
       $this->view->editItem($this->items, $item, $this->categories);
 
@@ -82,15 +84,16 @@
       if (!isset($_POST['precio']) || empty($_POST['precio'])) {
         return $this->view->showError("Falta completar el precio");
       }
-
+      
       $vehiculoAlquilar = $_POST['vehiculo_alquilar'];
       $fechaDeEntrega = $_POST['fecha_entrega'];
       $fechaDeVencimiento = $_POST['fecha_vencimiento'];
       $precio = $_POST['precio'];
       $idUsuario = $this->res->user->ID_Usuario;
-
+      
       $this->model->updateItemById($vehiculoAlquilar, $idUsuario, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
 
-      header("Location: " . BASE_URL);
+      header('Location: ' . BASE_URL);
+      ob_end_flush();
     }
   }
