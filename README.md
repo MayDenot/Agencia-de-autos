@@ -4,7 +4,7 @@
 
 ## DER
 
-![DER-ParteDos]()
+![DER-ParteDos](DER-SegundaParte.png)
 
 ## Integrantes:
 - Ferrante, Tomas Abel (44048410)
