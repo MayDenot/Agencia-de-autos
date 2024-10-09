@@ -4,8 +4,8 @@
   <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
     <div class="d-flex flex-column align-items-center flex-lg-row bg-light py-3 rounded-1">
     <div class="d-lg-flex flex-lg-row px-4 align-items-lg-center">
-      <div class="p-3">
-        <img src="<?= $category->Imagen ?>" class="w-100 me-3 img-fluid rounded-1" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
+      <div class="p-3" style="width: 300px;">
+        <img src="<?= $category->Imagen ?>" class="object-fit-cover me-3 img-fluid rounded-1" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
       </div>
         <div class="w-auto px-3">
           <h5 class="mt-0"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></h5>
