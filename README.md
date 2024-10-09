@@ -4,7 +4,7 @@
 
 ## DER
 
-![DER-ParteDos]()
+![DER-ParteDos](![image](https://github.com/user-attachments/assets/26b2f08e-cad5-41f1-80d1-471a9fa74880))
 
 ## Integrantes:
 - Ferrante, Tomas Abel (44048410)
