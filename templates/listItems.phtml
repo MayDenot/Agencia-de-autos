@@ -1,6 +1,7 @@
+<?php require_once "./templates/layouts/header.phtml"; ?>
 <?php if ($editar): ?>
   <?php require_once "./templates/layouts/formEditItems.phtml"; ?>
-<?php else : ?>
+<?php elseif ($this->user) : ?>
   <?php require_once "./templates/layouts/formItems.phtml"; ?>
 <?php endif ?>
 
@@ -23,12 +24,14 @@
           <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
             </div>
             <div class="d-flex flex-row align-items-center">
+            <?php if ($this->user) : ?>
               <div class="mx-2">
                 <a class="btn btn-sm btn-outline-success" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
               </div>
               <div>
                 <a class="btn btn-sm btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
               </div>
+              <?php endif?>
             </div>
           </div>
           <div>

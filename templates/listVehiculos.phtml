@@ -1,9 +1,9 @@
+<?php require_once "./templates/layouts/header.phtml"; ?>
 <?php if ($editar): ?>
   <?php require_once "./templates/layouts/formEditarVehiculo.phtml"; ?>
-<?php else : ?>
+<?php elseif ($this->user) : ?>
   <?php require_once "./templates/layouts/formVehiculos.phtml"; ?>
 <?php endif ?>
-<?php require_once "./templates/layouts/formVehiculos.phtml"; ?>
 
 <section class="container">
   <h2>Lista De Vehiculos</h2>
@@ -18,12 +18,14 @@
           </div>
         </div>
         <div class="col-5 d-flex flex-row justify-content-end">
-          <div class="mx-2">
-            <a class="btn btn-sm btn-outline-success" href="editarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Editar</a>
-          </div>
-          <div>
-            <a class="btn btn-sm btn-outline-danger" href="eliminarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Eliminar</a>
-          </div>
+          <?php if ($this->user) : ?>
+            <div class="mx-2">
+              <a class="btn btn-sm btn-outline-success" href="editarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Editar</a>
+            </div>
+            <div>
+              <a class="btn btn-sm btn-outline-danger" href="eliminarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Eliminar</a>
+            </div>
+          <?php endif ?>
         </div>
         <div>
           <div class="text-end">

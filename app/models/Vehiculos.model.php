@@ -35,7 +35,7 @@
         }
 
         public function editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen,$id) {
-            $query = $this->db->prepare('UPDATE vehiculos SET Patente = ?, Modelo = ?, Marca = ?, Año_de_Modelo = ?, Color = ?, Imagen = ? WHERE ID = ?');
+            $query = $this->db->prepare('UPDATE vehiculos SET Patente = ?, Modelo = ?, Marca = ?, Año_de_Modelo = ?, Color = ?, Imagen = ? WHERE ID_Vehiculo = ?');
             $query->execute([$patente,$modelo,$marca,$anio,$color,$imagen,$id]);
         }
     }

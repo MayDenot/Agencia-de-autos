@@ -22,7 +22,6 @@
         }
 
         public function addVehiculo() {
-            
             if (!isset($_POST['patente']) || empty($_POST['patente'])) {
                 return $this->view->showError("Falta Patente del Vehiculo");
             }
@@ -54,26 +53,26 @@
             $color = $_POST['color'];
             $imagen = $_POST['imagen'];
             
-            $id = $this->model->insertVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
+            $this->model->insertVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
             
-            if ($id) {
-                header('Location: ' . BASE_URL . '/vehiculos');
-            }
-            else {
-                $this->view->showError("Error al cargar vehiculo");
-            }
+            header('Location: ' . BASE_URL . 'vehiculos');
         }
 
         public function updateVehiculo($id) {
-            ob_start();
             $vehiculo = $this->model->getVehiculoById($id);
 
             if (!$vehiculo) {
                 return $this->view->showError("No existe el vehiculo");
             }
+
+            $vehiculos = $this->model->getVehiculos();
             
-            $this->view->editVehiculo($vehiculo);
+            $this->view->editVehiculo($vehiculos, $vehiculo);
             
+            header('Location: ' . BASE_URL . 'finalizarEdicionVehiculo');
+        }
+        
+        public function finishedEdit($id) {
             if (!isset($_POST['patente']) || empty($_POST['patente'])) {
                 return $this->view->showError("Falta Patente del Vehiculo");
             }
@@ -105,12 +104,8 @@
             $color = $_POST['color'];
             $imagen = $_POST['imagen'];
             
-            $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen,$id);
-            
-            if ($id)
+            $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen,$id);
             header('Location: ' . BASE_URL . 'vehiculos');
-            else
-                $this->view->showError("Error al actualizar el vehiculo");
         }
 
         public function removeVehiculo($id) {
@@ -118,5 +113,3 @@
             header('Location: ' . BASE_URL . 'vehiculos');
         }
     }
-
-

@@ -17,7 +17,7 @@
             require_once './templates/detallesVehiculo.phtml';
         }
 
-        public function editVehiculo($vehiculo) {
+        public function editVehiculo($vehiculos, $vehiculo) {
             $editar = true;
             require_once './templates/listVehiculos.phtml';
         }

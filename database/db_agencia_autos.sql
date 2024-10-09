@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 03, 2024 at 06:27 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 10-10-2024 a las 00:37:58
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_agencia_autos`
+-- Base de datos: `db_agencia_autos`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alquileres`
+-- Estructura de tabla para la tabla `alquileres`
 --
 
 CREATE TABLE `alquileres` (
@@ -37,17 +37,20 @@ CREATE TABLE `alquileres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `alquileres`
+-- Volcado de datos para la tabla `alquileres`
 --
 
 INSERT INTO `alquileres` (`ID`, `ID_Vehiculo`, `ID_Usuario`, `Fecha_de_entrega`, `Fecha_de_vencimiento`, `Precio`) VALUES
 (5, 1, 2, '2024-09-04', '2024-09-11', 6000),
-(7, 5, 2, '2024-10-02', '2024-10-09', 4500);
+(7, 5, 2, '2024-10-02', '2024-10-09', 4500),
+(9, 2, 2, '2024-10-09', '2024-10-16', 9600),
+(10, 5, 2, '2024-10-09', '2024-10-10', 15000),
+(13, 6, 0, '2024-10-02', '2024-10-16', 3000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -57,7 +60,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`ID_Usuario`, `Usuario`, `Contraseña`) VALUES
@@ -66,7 +69,7 @@ INSERT INTO `usuarios` (`ID_Usuario`, `Usuario`, `Contraseña`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vehiculos`
+-- Estructura de tabla para la tabla `vehiculos`
 --
 
 CREATE TABLE `vehiculos` (
@@ -76,24 +79,25 @@ CREATE TABLE `vehiculos` (
   `Marca` varchar(45) NOT NULL,
   `Año_de_Modelo` year(4) NOT NULL,
   `Color` varchar(40) NOT NULL,
-  `Imagen` varchar(250) NOT NULL
+  `Imagen` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vehiculos`
+-- Volcado de datos para la tabla `vehiculos`
 --
 
 INSERT INTO `vehiculos` (`ID_Vehiculo`, `Patente`, `Modelo`, `Marca`, `Año_de_Modelo`, `Color`, `Imagen`) VALUES
 (1, 'WET784', 'Corsa', 'Chevrolet', '2011', 'Gris', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD_I820zEB6Aju3Lde_is6WHtNVPHZtGnffA&s'),
 (2, 'AD652FG', 'Cronos', 'Fiat', '2022', 'Gris', 'https://cdn.motor1.com/images/mgl/gZjbE/s1/lanzamiento-fiat-cronos-s-design-ii-2022.jpg'),
-(5, 'AC-345-FP', 'Corolla', 'Toyota', '2015', 'Blanco', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOP88qtc-3oSLow_KfQmCEsG2SvhNVnd2bJg&s');
+(5, 'AC-345-FP', 'Corolla', 'Toyota', '2015', 'Blanco', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOP88qtc-3oSLow_KfQmCEsG2SvhNVnd2bJg&s'),
+(6, 'AA-234-BB', 'Amarok', 'Volkswagen', '2017', 'Azul', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlfqqNm_agW2fTwSn9NQPeqTP9riPABJ4E1A&s');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `alquileres`
+-- Indices de la tabla `alquileres`
 --
 ALTER TABLE `alquileres`
   ADD PRIMARY KEY (`ID`),
@@ -101,50 +105,49 @@ ALTER TABLE `alquileres`
   ADD KEY `fk_id_usuario` (`ID_Usuario`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`ID_Usuario`),
   ADD UNIQUE KEY `Usuario` (`Usuario`);
 
 --
--- Indexes for table `vehiculos`
+-- Indices de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
   ADD PRIMARY KEY (`ID_Vehiculo`),
   ADD KEY `ID_Vehiculo` (`ID_Vehiculo`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `alquileres`
+-- AUTO_INCREMENT de la tabla `alquileres`
 --
 ALTER TABLE `alquileres`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `vehiculos`
+-- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `ID_Vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `alquileres`
+-- Filtros para la tabla `alquileres`
 --
 ALTER TABLE `alquileres`
-  ADD CONSTRAINT `alquileres_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`),
   ADD CONSTRAINT `fk_id_vehiculo` FOREIGN KEY (`ID_Vehiculo`) REFERENCES `vehiculos` (`ID_Vehiculo`);
 COMMIT;
 

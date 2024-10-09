@@ -59,17 +59,20 @@ switch ($params[0]) {
     sessionAuthMiddleware($res);
     $controller = new VehiculosController($res);
     $controller->showVehiculos();
+    break;
   case 'vehiculo':
     sessionAuthMiddleware($res);
     $id = null;
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController($res);
     $controller->showVehiculo($id);
+    break;
   case 'nuevoVehiculo':
     sessionAuthMiddleware($res);
     verifyAuthMiddleware($res);
     $controller = new VehiculosController($res);
     $controller->addVehiculo();
+    break;
   case 'eliminarVehiculo':
     sessionAuthMiddleware($res);
     verifyAuthMiddleware($res);
@@ -77,13 +80,25 @@ switch ($params[0]) {
     if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController($res);
     $controller->removeVehiculo($id);
+    break;
   case 'editarVehiculo':
     sessionAuthMiddleware($res);
     verifyAuthMiddleware($res);
-    $id = null;
-    if (isset($params[1])) $id = $params[1];
     $controller = new VehiculosController($res);
-    $controller->updateVehiculo($id);
+    $controller->updateVehiculo($params[1]);
+    break;
+  case 'finalizarEdicionVehiculo':
+    sessionAuthMiddleware($res);
+    verifyAuthMiddleware($res);
+    $controller = new VehiculosController($res);
+    $controller->finishedEdit($params[1]);
+    break;
+  case 'finalizarEdicionAlquiler':
+      sessionAuthMiddleware($res);
+      verifyAuthMiddleware($res);
+      $controller = new ItemController($res);
+      $controller->finishedEdit($params[1]);
+      break;
   case 'logout':
     $controller = new AuthController();
     $controller->logout();
