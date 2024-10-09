@@ -9,12 +9,17 @@
         }
 
         public function showVehiculos($vehiculos) {
-            $count = count($vehiculos);
+            $editar = false;
             require_once "./templates/listVehiculos.phtml";
         }
 
         public function showVehiculo($vehiculo) {
             require_once './templates/detallesVehiculo.phtml';
+        }
+
+        public function editVehiculo($vehiculo) {
+            $editar = true;
+            require_once './templates/listVehiculos.phtml';
         }
 
         public function showError($error) {

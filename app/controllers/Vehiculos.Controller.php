@@ -64,7 +64,15 @@
             }
         }
 
-        public function updateVehiculo() {
+        public function updateVehiculo($id) {
+            ob_start();
+            $vehiculo = $this->model->getVehiculoById($id);
+
+            if (!$vehiculo) {
+                return $this->view->showError("No existe el vehiculo");
+            }
+            
+            $this->view->editVehiculo($vehiculo);
             
             if (!isset($_POST['patente']) || empty($_POST['patente'])) {
                 return $this->view->showError("Falta Patente del Vehiculo");
@@ -97,7 +105,7 @@
             $color = $_POST['color'];
             $imagen = $_POST['imagen'];
             
-            $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
+            $id = $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen,$id);
             
             if ($id)
             header('Location: ' . BASE_URL . 'vehiculos');
