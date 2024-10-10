@@ -1,0 +1,16 @@
+<?php require_once "./templates/layouts/header.phtml"; ?>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <p>Patente: <?= $vehicle->Patente ?></p>
+    <h6 class="card-title">Modelo: <?= $vehicle->Modelo ?></h6>
+    <h6 class="card-title">Marca: <?= $vehicle->Marca ?></h6>
+    <h6 class="card-title">Año: <?= $vehicle->Año_de_Modelo ?></h6>
+    <h6 class="card-title">Color: <?= $vehicle->Color ?></h6>
+    <img class="img-thumbnail" src=" <?= $vehicle->Imagen ?>" alt="Imagen del Vehiculo">
+  </div>
+  <a href="<?= BASE_URL . 'vehiculos' ?>" class="card-link text-end p-3">Volver</a>
+</div>
+</div>
+
+<?php require_once "./templates/layouts/footer.phtml"; ?>

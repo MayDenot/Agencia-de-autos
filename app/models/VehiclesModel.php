@@ -1,40 +1,40 @@
 <?php
     require_once './config.php';
-    require_once './app/models/model.php';
+    require_once './app/models/Model.php';
 
-    class VehiculosModel extends Model{
+    class VehiclesModel extends Model{
         
-        public function getVehiculos() {
+        public function getVehicles() {
             $query = $this->db->prepare('SELECT * FROM vehiculos');
             $query->execute();
 
-            $vehiculos = $query->fetchAll(PDO::FETCH_OBJ);
+            $vehicles = $query->fetchAll(PDO::FETCH_OBJ);
 
-            return $vehiculos;
+            return $vehicles;
         }
 
-        public function getVehiculoById($id) {
+        public function getVehicleById($id) {
             $query = $this->db->prepare('SELECT * FROM vehiculos WHERE ID_Vehiculo = ?');
             $query->execute([$id]);
 
-            $vehiculo = $query->fetch(PDO::FETCH_OBJ);
+            $vehicle = $query->fetch(PDO::FETCH_OBJ);
 
-            return $vehiculo;
+            return $vehicle;
         }
 
-        public function deleteVehiculo($id) {
+        public function deleteVehicle($id) {
             $query = $this->db->prepare('DELETE FROM vehiculos WHERE ID_Vehiculo = ?');
             $query->execute([$id]);
         }
 
-        public function insertVehiculo($patente,$modelo,$marca,$anio,$color,$imagen) {
+        public function insertVehicle($patente,$modelo,$marca,$anio,$color,$imagen) {
             $query = $this->db->prepare('INSERT INTO vehiculos(Patente, Modelo, Marca, Año_de_Modelo, Color, Imagen) VALUES (?,?,?,?,?,?)');
             $query->execute([$patente,$modelo,$marca,$anio,$color,$imagen]);
 
             return $this->db->lastInsertId();
         }
 
-        public function editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen,$id) {
+        public function editVehicle($patente,$modelo,$marca,$anio,$color,$imagen,$id) {
             $query = $this->db->prepare('UPDATE vehiculos SET Patente = ?, Modelo = ?, Marca = ?, Año_de_Modelo = ?, Color = ?, Imagen = ? WHERE ID_Vehiculo = ?');
             $query->execute([$patente,$modelo,$marca,$anio,$color,$imagen,$id]);
         }

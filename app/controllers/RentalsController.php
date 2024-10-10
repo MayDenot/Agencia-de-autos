@@ -1,38 +1,33 @@
 <?php
-require_once "./app/models/ItemModel.php";
-require_once "./app/models/Vehiculos.model.php";
-require_once "./app/views/ItemView.php";
+require_once "./app/models/RentalsModel.php";
+require_once "./app/models/VehiclesModel.php";
+require_once "./app/views/RentalsView.php";
 
-class ItemController
-{
+class RentalsController {
   private $model;
-  private $modelVehiculo;
+  private $modelVehicle;
   private $view;
-  private $items;
-  protected $categories;
+  private $rentals;
+  private $vehicles;
 
-  public function __construct($res)
-  {
-    $this->model = new ItemModel();
-    $this->modelVehiculo = new VehiculosModel();
-    $this->view = new ItemView($res->user);
-    $this->items = $this->model->getAllItems();
-    $this->categories = $this->modelVehiculo->getVehiculos();
+  public function __construct($res) {
+    $this->model = new RentalsModel();
+    $this->modelVehicle = new VehiclesModel();
+    $this->view = new RentalsView($res->user);
+    $this->rentals = $this->model->getAllRentals();
+    $this->vehicles = $this->modelVehicle->getVehicles();
   }
 
-  public function showItems()
-  {
-    $this->view->showItems($this->items, $this->categories);
+  public function showRentals() {
+    $this->view->showRentals($this->rentals, $this->vehicles);
   }
 
-  public function showItem($id)
-  {
-    $item = $this->model->getItemById($id);
-    $this->view->showItem($item, $this->categories);
+  public function showRent($id) {
+    $rent = $this->model->getRentById($id);
+    $this->view->showRent($rent, $this->vehicles);
   }
 
-  public function addItem()
-  {
+  public function addRent() {
     if (!isset($_POST['vehiculo_alquilar']) || empty($_POST['vehiculo_alquilar'])) {
       return $this->view->showError("Falta seleccionar una vehículo");
     }
@@ -51,33 +46,30 @@ class ItemController
     $fechaDeVencimiento = $_POST['fecha_vencimiento'];
     $precio = $_POST['precio'];
 
-    $this->model->insertItem($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio);
+    $this->model->insertRent($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio);
 
     header("Location: " . BASE_URL);
   }
 
-  public function deleteItem($id)
-  {
-    $this->model->deleteItemById($id);
+  public function deleteRent($id) {
+    $this->model->deleteRentById($id);
 
     header("Location: " . BASE_URL);
   }
 
-  public function updateItem($id)
-  {
-    $item = $this->model->getItemById($id);
+  public function updateRent($id) {
+    $rent = $this->model->getRentById($id);
 
-    if (!$item) {
+    if (!$rent) {
       return $this->view->showError("No existe el alquiler con el id = $id");
     }
 
-    $this->view->editItem($this->items, $item, $this->categories);
+    $this->view->editRent($this->rentals, $rent, $this->vehicles);
 
     header('Location: ' . BASE_URL . 'finalizarEdicionAlquiler');
   }
 
-  public function finishedEdit($id)
-  {
+  public function finishedEdit($id) {
     if (!isset($_POST['vehiculo_alquilar']) || empty($_POST['vehiculo_alquilar'])) {
       return $this->view->showError("Falta seleccionar una vehículo");
     }
@@ -96,7 +88,7 @@ class ItemController
     $fechaDeVencimiento = $_POST['fecha_vencimiento'];
     $precio = $_POST['precio'];
 
-    $this->model->updateItemById($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
+    $this->model->updateRentById($vehiculoAlquilar, $fechaDeEntrega, $fechaDeVencimiento, $precio, $id);
 
     header('Location: ' . BASE_URL);
   }

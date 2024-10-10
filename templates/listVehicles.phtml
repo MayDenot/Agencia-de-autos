@@ -1,35 +1,35 @@
 <?php require_once "./templates/layouts/header.phtml"; ?>
-<?php if ($editar): ?>
-  <?php require_once "./templates/layouts/formEditarVehiculo.phtml"; ?>
+<?php if ($edit): ?>
+  <?php require_once "./templates/layouts/formEditVehicles.phtml"; ?>
 <?php elseif ($this->user) : ?>
-  <?php require_once "./templates/layouts/formVehiculos.phtml"; ?>
+  <?php require_once "./templates/layouts/formVehicles.phtml"; ?>
 <?php endif ?>
 
 <section class="container">
   <h2>Lista De Vehiculos</h2>
   <ul class='list-group'>
-    <?php foreach ($vehiculos as $vehiculo) : ?>
+    <?php foreach ($vehicles as $vehicle) : ?>
       <li class="row list-group-item d-flex justify-content-between align-items-center py-3 px-2">
         <div class="col-7">
           <div class="fw-bold">
-            <h6>Modelo: <?= $vehiculo->Modelo ?> </h6>
-            <h6>Patente: <?= $vehiculo->Patente ?></h6>
-            <h6>Marca: <?= $vehiculo->Marca ?></h6>
+            <h6>Modelo: <?= $vehicle->Modelo ?> </h6>
+            <h6>Patente: <?= $vehicle->Patente ?></h6>
+            <h6>Marca: <?= $vehicle->Marca ?></h6>
           </div>
         </div>
         <div class="col-5 d-flex flex-row justify-content-end">
           <?php if ($this->user) : ?>
             <div class="mx-2">
-              <a class="btn btn-sm btn-outline-success" href="editarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Editar</a>
+              <a class="btn btn-sm btn-outline-success" href="editarVehiculo/<?= $vehicle->ID_Vehiculo ?>" role="button">Editar</a>
             </div>
             <div>
-              <a class="btn btn-sm btn-outline-danger" href="eliminarVehiculo/<?= $vehiculo->ID_Vehiculo ?>" role="button">Eliminar</a>
+              <a class="btn btn-sm btn-outline-danger" href="eliminarVehiculo/<?= $vehicle->ID_Vehiculo ?>" role="button">Eliminar</a>
             </div>
           <?php endif ?>
         </div>
         <div>
           <div class="text-end">
-            <a class="btn btn-link btn-sm" href="vehiculo/<?= $vehiculo->ID_Vehiculo ?>">Detalles</a>
+            <a class="btn btn-link btn-sm" href="vehiculo/<?= $vehicle->ID_Vehiculo ?>">Detalles</a>
           </div>
         </div>
       </li>

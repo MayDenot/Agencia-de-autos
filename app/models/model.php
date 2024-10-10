@@ -1,16 +1,13 @@
 <?php
-class Model
-{
+class Model {
     protected $db;
 
-    function __construct()
-    {
+    function __construct() {
         $this->db = new PDO('mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DB . ';charset=utf8', MYSQL_USER, MYSQL_PASS);
         $this->deploy();
     }
 
-    function deploy()
-    {
+    function deploy() {
         // Chequear si hay tablas
         $query = $this->db->query('SHOW TABLES');
         $tables = $query->fetchAll(); // Nos devuelve todas las tablas de la db
@@ -30,7 +27,6 @@ class Model
             CREATE TABLE `alquileres` (
             `ID` int(11) NOT NULL,
             `ID_Vehiculo` int(11) NOT NULL,
-            `ID_Usuario` int(11) NOT NULL,
             `Fecha_de_entrega` date NOT NULL,
             `Fecha_de_vencimiento` date NOT NULL,
             `Precio` double NOT NULL
@@ -40,12 +36,12 @@ class Model
             -- Volcado de datos para la tabla `alquileres`
             --
 
-            INSERT INTO `alquileres` (`ID`, `ID_Vehiculo`, `ID_Usuario`, `Fecha_de_entrega`, `Fecha_de_vencimiento`, `Precio`) VALUES
-            (5, 1, 2, '2024-09-04', '2024-09-11', 6000),
-            (7, 5, 2, '2024-10-02', '2024-10-09', 4500),
-            (9, 2, 2, '2024-10-09', '2024-10-16', 9600),
-            (10, 5, 2, '2024-10-09', '2024-10-10', 15000),
-            (13, 6, 0, '2024-10-02', '2024-10-16', 3000);
+            INSERT INTO `alquileres` (`ID`, `ID_Vehiculo`, `Fecha_de_entrega`, `Fecha_de_vencimiento`, `Precio`) VALUES
+            (5, 1, '2024-09-04', '2024-09-11', 6000),
+            (7, 5, '2024-10-02', '2024-10-09', 4500),
+            (9, 2, '2024-10-09', '2024-10-16', 9600),
+            (10, 5, '2024-10-09', '2024-10-10', 15000),
+            (13, 6, '2024-10-02', '2024-10-16', 3000);
 
             -- --------------------------------------------------------
 
@@ -102,7 +98,6 @@ class Model
             ALTER TABLE `alquileres`
             ADD PRIMARY KEY (`ID`),
             ADD KEY `fk_id_vehiculo` (`ID_Vehiculo`),
-            ADD KEY `fk_id_usuario` (`ID_Usuario`);
 
             --
             -- Indices de la tabla `usuarios`

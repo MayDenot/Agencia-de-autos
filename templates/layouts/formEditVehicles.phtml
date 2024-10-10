@@ -1,41 +1,41 @@
 <?php require_once "./templates/layouts/header.phtml"; ?>
 
 <div class="d-flex flex-column flex-lg-row gap-5 mx-2">
-  <form action="<?=BASE_URL?>finalizarEdicionVehiculo/<?=$vehiculo->ID_Vehiculo?>" method="POST" class="container bg-light p-5">
+  <form action="<?=BASE_URL?>finalizarEdicionVehiculo/<?=$vehicle->ID_Vehiculo?>" method="POST" class="container bg-light p-5">
     <div class="row mb-3">
       <label for="inputPatente" class="col-sm-2 col-form-label">Patente</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputPatente" name="patente" value="<?= $vehiculo->Patente ?>" required>
+        <input type="text" class="form-control" id="inputPatente" name="patente" value="<?= $vehicle->Patente ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputModelo" name="modelo" value="<?= $vehiculo->Modelo ?>" required>
+        <input type="text" class="form-control" id="inputModelo" name="modelo" value="<?= $vehicle->Modelo ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputMarca" class="col-sm-2 col-form-label">Marca</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputMarca" name="marca" value="<?= $vehiculo->Marca ?>" required>
+        <input type="text" class="form-control" id="inputMarca" name="marca" value="<?= $vehicle->Marca ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputAnio" class="col-sm-2 col-form-label">Año</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputAnio" name="anio" value="<?= $vehiculo->Año_de_Modelo ?>" required>
+        <input type="text" class="form-control" id="inputAnio" name="anio" value="<?= $vehicle->Año_de_Modelo ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputColor" class="col-sm-2 col-form-label">Color</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputColor" name="color" value="<?= $vehiculo->Color ?>" required>
+        <input type="text" class="form-control" id="inputColor" name="color" value="<?= $vehicle->Color ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputImagen" class="col-sm-2 col-form-label">Imagen(URL)</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputImagen" name="imagen" value="<?= $vehiculo->Imagen ?>" required>
+        <input type="text" class="form-control" id="inputImagen" name="imagen" value="<?= $vehicle->Imagen ?>" required>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Guardar cambios</button>

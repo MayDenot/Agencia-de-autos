@@ -1,16 +1,16 @@
 <?php require_once "./templates/layouts/header.phtml"; ?>
 
 <div class="d-flex flex-column flex-lg-row gap-5 mx-2">
-  <form action="<?=BASE_URL?>finalizarEdicionAlquiler/<?=$item->ID?>" method="POST" class="container bg-light p-5">
+  <form action="<?=BASE_URL?>finalizarEdicionAlquiler/<?=$rent->ID?>" method="POST" class="container bg-light p-5">
     <div class="row mb-3">
       <label class="col-sm-2 col-form-label" for="selectVehiculo">Vehiculo</label>
       <div class="col-sm-10">
         <select class="form-select" id="selectVehiculo" name="vehiculo_alquilar" required>
-          <?php foreach ($categories as $category) : ?>
-            <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
-              <option selected value="<?= $item->ID_Vehiculo ?>"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></option>
+          <?php foreach ($vehicles as $vehicle) : ?>
+            <?php if ($vehicle->ID_Vehiculo == $rent->ID_Vehiculo): ?>
+              <option selected value="<?= $rent->ID_Vehiculo ?>"><?= $vehicle->Marca ?> <?= $vehicle->Modelo ?> <?= $vehicle->Año_de_Modelo ?></option>
             <?php endif; ?>
-            <option value="<?= $category->ID_Vehiculo ?>"><?= $category->Marca ?> <?= $category->Modelo ?> <?= $category->Año_de_Modelo ?></option>
+            <option value="<?= $vehicle->ID_Vehiculo ?>"><?= $vehicle->Marca ?> <?= $vehicle->Modelo ?> <?= $vehicle->Año_de_Modelo ?></option>
             <?php endforeach ?>
         </select>
       </div>
@@ -18,19 +18,19 @@
     <div class="row mb-3">
       <label for="inputFechaEntrega" class="col-sm-2 col-form-label">Fecha de entrega</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" id="inputFechaEntrega" name="fecha_entrega" value="<?= $item->Fecha_de_entrega ?>" required>
+        <input type="date" class="form-control" id="inputFechaEntrega" name="fecha_entrega" value="<?= $rent->Fecha_de_entrega ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputFechaVencimiento" class="col-sm-2 col-form-label">Fecha de vencimiento</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" id="inputFechaVencimiento" name="fecha_vencimiento" value="<?= $item->Fecha_de_vencimiento ?>" required>
+        <input type="date" class="form-control" id="inputFechaVencimiento" name="fecha_vencimiento" value="<?= $rent->Fecha_de_vencimiento ?>" required>
       </div>
     </div>
     <div class="row mb-3">
       <label for="inputPrecio" class="col-sm-2 col-form-label">Precio</label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" id="inputPrecio" name="precio" value="<?= $item->Precio ?>" required>
+        <input type="number" class="form-control" id="inputPrecio" name="precio" value="<?= $rent->Precio ?>" required>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Guardar cambios</button>

@@ -1,42 +1,42 @@
 <?php require_once "./templates/layouts/header.phtml"; ?>
-<?php if ($editar): ?>
-  <?php require_once "./templates/layouts/formEditItems.phtml"; ?>
+<?php if ($edit): ?>
+  <?php require_once "./templates/layouts/formEditRentals.phtml"; ?>
 <?php elseif ($this->user) : ?>
-  <?php require_once "./templates/layouts/formItems.phtml"; ?>
+  <?php require_once "./templates/layouts/formRentals.phtml"; ?>
 <?php endif ?>
 
 <section class="container">
   <h2>Lista de alquileres</h2>
   <ul class='list-group'>
-    <?php foreach ($items as $item) : ?>
+    <?php foreach ($rentals as $rent) : ?>
       <li class="row list-group-item d-flex justify-content-between align-items-center py-3 px-2">
         <div class="col-4">
-          <?php foreach ($categories as $category) : ?>
-            <?php if ($category->ID_Vehiculo == $item->ID_Vehiculo): ?>
-              <img src="<?= $category->Imagen ?>" class="w-100 me-3 rounded-1" alt="<?= $category->Modelo ?> <?= $category->Año_de_Modelo ?>">
+          <?php foreach ($vehicles as $vehicle) : ?>
+            <?php if ($vehicle->ID_Vehiculo == $rent->ID_Vehiculo): ?>
+              <img src="<?= $vehicle->Imagen ?>" class="w-100 me-3 rounded-1" alt="<?= $vehicle->Modelo ?> <?= $vehicle->Año_de_Modelo ?>">
         </div>
         <div class="col-8">
           <div class="d-flex flex-row justify-content-between">
             <div>
-              <p class="fw-bold text-secondary"><?= $category->Marca ?></p>
+              <p class="fw-bold text-secondary"><?= $vehicle->Marca ?></p>
             <?php endif; ?>
           <?php endforeach ?>
-          <span class="badge text-bg-primary rounded-pill">$<?= $item->Precio ?></span>
+          <span class="badge text-bg-primary rounded-pill">$<?= $rent->Precio ?></span>
             </div>
             <div class="d-flex flex-row align-items-center">
             <?php if ($this->user) : ?>
               <div class="mx-2">
-                <a class="btn btn-sm btn-outline-success" href="editarAlquiler/<?= $item->ID ?>" role="button">Editar</a>
+                <a class="btn btn-sm btn-outline-success" href="editarAlquiler/<?= $rent->ID ?>" role="button">Editar</a>
               </div>
               <div>
-                <a class="btn btn-sm btn-outline-danger" href="eliminarAlquiler/<?= $item->ID ?>" role="button">Eliminar</a>
+                <a class="btn btn-sm btn-outline-danger" href="eliminarAlquiler/<?= $rent->ID ?>" role="button">Eliminar</a>
               </div>
               <?php endif?>
             </div>
           </div>
           <div>
             <div class="text-end">
-              <a class="btn btn-link btn-sm" href="alquiler/<?= $item->ID ?>">Detalles</a>
+              <a class="btn btn-link btn-sm" href="alquiler/<?= $rent->ID ?>">Detalles</a>
             </div>
           </div>
         </div>

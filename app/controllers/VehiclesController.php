@@ -1,27 +1,27 @@
 <?php
-    require_once './app/models/vehiculos.model.php';
-    require_once './app/views/Vehiculos.view.php';
+    require_once './app/models/VehiclesModel.php';
+    require_once './app/views/VehiclesView.php';
 
-    class VehiculosController {
+    class VehiclesController {
         private $model;
         private $view;
 
         public function __construct($res) {
-            $this->model = new VehiculosModel();
-            $this->view = new VehiculosView($res->user);
+            $this->model = new VehiclesModel();
+            $this->view = new VehiclesView($res->user);
         }
 
-        public function showVehiculos() {
-            $vehiculos = $this->model->getVehiculos();
-            $this->view->showVehiculos($vehiculos);
+        public function showVehicles() {
+            $vehicles = $this->model->getVehicles();
+            $this->view->showVehicles($vehicles);
         }
 
-        public function showVehiculo($id) {
-            $vehiculo = $this->model->getVehiculoById($id);
-            $this->view->showVehiculo($vehiculo);
+        public function showVehicle($id) {
+            $vehicle = $this->model->getVehicleById($id);
+            $this->view->showVehicle($vehicle);
         }
 
-        public function addVehiculo() {
+        public function addVehicle() {
             if (!isset($_POST['patente']) || empty($_POST['patente'])) {
                 return $this->view->showError("Falta Patente del Vehiculo");
             }
@@ -53,21 +53,21 @@
             $color = $_POST['color'];
             $imagen = $_POST['imagen'];
             
-            $this->model->insertVehiculo($patente,$modelo,$marca,$anio,$color,$imagen);
+            $this->model->insertVehicle($patente,$modelo,$marca,$anio,$color,$imagen);
             
             header('Location: ' . BASE_URL . 'vehiculos');
         }
 
-        public function updateVehiculo($id) {
-            $vehiculo = $this->model->getVehiculoById($id);
+        public function updateVehicle($id) {
+            $vehicle = $this->model->getVehicleById($id);
 
-            if (!$vehiculo) {
+            if (!$vehicle) {
                 return $this->view->showError("No existe el vehiculo");
             }
 
-            $vehiculos = $this->model->getVehiculos();
+            $vehicles = $this->model->getVehicles();
             
-            $this->view->editVehiculo($vehiculos, $vehiculo);
+            $this->view->editVehicle($vehicles, $vehicle);
             
             header('Location: ' . BASE_URL . 'finalizarEdicionVehiculo');
         }
@@ -104,12 +104,12 @@
             $color = $_POST['color'];
             $imagen = $_POST['imagen'];
             
-            $this->model->editVehiculo($patente,$modelo,$marca,$anio,$color,$imagen,$id);
+            $this->model->editVehicle($patente,$modelo,$marca,$anio,$color,$imagen,$id);
             header('Location: ' . BASE_URL . 'vehiculos');
         }
 
-        public function removeVehiculo($id) {
-            $this->model->deleteVehiculo($id);
+        public function removeVehicle($id) {
+            $this->model->deleteVehicle($id);
             header('Location: ' . BASE_URL . 'vehiculos');
         }
     }
